@@ -145,27 +145,26 @@ namespace Infrastructure.Extensions
             where T : class
         {
             var entity = Activator.CreateInstance<T>();
-            var propertyNames = typeof(T).GetProperties().Select(p => p.Name.ToLower()).ToList();
-            System.Console.WriteLine($"Property Names: {string.Join(", ", propertyNames)}");
+            var propertyNames = typeof(T).GetProperties().Select(p => p.Name).ToList();
+            //System.Console.WriteLine($"Property Names: {string.Join(", ", propertyNames)}");
             for (int i = 0; i < reader.FieldCount; i++)
             {
                  System.Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
                 System.Console.WriteLine($"Field Name: {reader.GetName(i)}");
-                var propertyName = reader.GetName(i).ToLower();
-                if (propertyNames.Contains(propertyName))
+                var propertyName = reader.GetName(i);
+                if (propertyNames.Contains(propertyName,StringComparer.OrdinalIgnoreCase))
                 {
-                    var property = typeof(T).GetProperty(propertyName);
+                    var prop= propertyNames.FirstOrDefault(p=>p.Contains(propertyName,StringComparison.OrdinalIgnoreCase));
+                    var property = typeof(T).GetProperty(prop);
                     if (property != null)
                     {
                         var value = reader.GetValue(i);
                         property.SetValue(entity, value);
-
                        System.Console.WriteLine($"{propertyName}: {value}");
                     }
                 }
             }
             return entity;
-            System.Console.WriteLine("Entity:" + entity);
         }
 
         private static string BuildInsertQuery<T>()
