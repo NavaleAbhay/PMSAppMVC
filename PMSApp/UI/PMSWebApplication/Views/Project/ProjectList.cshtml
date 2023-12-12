@@ -1,0 +1,30 @@
+@model List<Domain.Entities.Project>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Description</th>
+                <th>Team Manager Id</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>@project.Id</td>
+                    <td>@project.Title</td>
+                    <td>@project.StartDate</td>
+                    <td>@project.EndDate</td>
+                    <td>@project.Description</td>
+                    <td>@project.TeamManagerId</td>
+                    <td>@project.Status</td>
+                </tr>
+            }
+        </tbody>    
+    </table>
+    

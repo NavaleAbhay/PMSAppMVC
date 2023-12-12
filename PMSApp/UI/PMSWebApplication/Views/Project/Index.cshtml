@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="projectListContainer">
+</div>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            loadProjectList();
+        });
+
+        function loadProjectList() {
+            $.ajax({
+                url: '@Url.Action("ProjectList", "Project")',
+                type: 'GET',
+                success: function (result) {
+                    $('#projectListContainer').html(result);
+                },
+                error: function (error) {
+                    console.error('Error loading project list: ', error);
+                }
+            });
+        }
+    </script>
+}
