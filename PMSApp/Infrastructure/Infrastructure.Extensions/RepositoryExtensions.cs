@@ -90,9 +90,7 @@ namespace Infrastructure.Extensions
                             while (await reader.ReadAsync())
                             {
                                 var entity = MapEntityFromReader<T>(reader);
-
                                 entities.Add(entity);
-                                System.Console.WriteLine(entity);
                             }
                             return entities;
                         }
@@ -147,12 +145,12 @@ namespace Infrastructure.Extensions
             where T : class
         {
             var entity = Activator.CreateInstance<T>();
-            var propertyNames = typeof(T).GetProperties().Select(p => p.Name).ToList();
-           // System.Console.WriteLine($"Property Names: {string.Join(", ", propertyNames)}");
+            var propertyNames = typeof(T).GetProperties().Select(p => p.Name.ToLower()).ToList();
+            System.Console.WriteLine($"Property Names: {string.Join(", ", propertyNames)}");
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                // System.Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
-                // System.Console.WriteLine($"Field Name: {reader.GetName(i)}");
+                 System.Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
+                System.Console.WriteLine($"Field Name: {reader.GetName(i)}");
                 var propertyName = reader.GetName(i).ToLower();
                 if (propertyNames.Contains(propertyName))
                 {
@@ -162,11 +160,12 @@ namespace Infrastructure.Extensions
                         var value = reader.GetValue(i);
                         property.SetValue(entity, value);
 
-                       // System.Console.WriteLine($"{propertyName}: {value}");
+                       System.Console.WriteLine($"{propertyName}: {value}");
                     }
                 }
             }
             return entity;
+            System.Console.WriteLine("Entity:" + entity);
         }
 
         private static string BuildInsertQuery<T>()
