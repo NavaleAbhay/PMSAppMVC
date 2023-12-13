@@ -18,8 +18,8 @@
                 <tr>
                     <td>@project.Id</td>
                     <td>@project.Title</td>
-                    <td>@project.StartDate</td>
-                    <td>@project.EndDate</td>
+                    <td>@String.Format("{0:dd MMM yyyy}", project.StartDate)</td>
+                    <td>@String.Format("{0:dd MMM yyyy}", project.EndDate)</td>                    
                     <td>@project.Description</td>
                     <td>@project.TeamManagerId</td>
                     <td>@project.Status</td>

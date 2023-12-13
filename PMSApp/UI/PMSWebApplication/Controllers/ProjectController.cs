@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Service.Interfaces;
+using Application.Services.Interfaces;
 using PMSWebApplication.Models;
 
 namespace PMSWebApplication.Controllers;

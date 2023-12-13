@@ -4,8 +4,8 @@
 
  <ItemGroup>
     <ProjectReference Include="..\..\Domain\Domain.Entities\Domain.Entities.csproj" />
-    <ProjectReference Include="..\..\Service\Service.Interfaces\Service.Interfaces.csproj" />
-    <ProjectReference Include="..\..\Service\Service.Services\Service.Services.csproj" />
+    <ProjectReference Include="..\..\Application\Application.Services.Interfaces\Application.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Application\Application.Services\Application.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.Repositories.Interfaces\Infrastructure.Repositories.Interfaces.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.Repositories\Infrastructure.Repositories.csproj" />
   </ItemGroup>

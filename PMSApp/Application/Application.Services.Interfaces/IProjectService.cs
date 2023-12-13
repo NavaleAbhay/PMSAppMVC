@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
-namespace Service.Interfaces
+namespace Application.Services.Interfaces
 {
     public interface IProjectService
     {

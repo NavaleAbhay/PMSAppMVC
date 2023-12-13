@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using  Service.Interfaces;
+using Application.Services.Interfaces;
 using Domain.Entities;
 using Infrastructure.Repositories.Interfaces;
-namespace Service.Services
+namespace Application.Services
 {
     public class ProjectService : IProjectService
     {

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
+ <ItemGroup>
     <ProjectReference Include="..\..\Domain\Domain.Entities\Domain.Entities.csproj" />
-    <ProjectReference Include="..\Service.Interfaces\Service.Interfaces.csproj" />
+    <ProjectReference Include="..\Application.Services.Interfaces\Application.Services.Interfaces.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.Repositories.Interfaces\Infrastructure.Repositories.Interfaces.csproj" />
   </ItemGroup>
 

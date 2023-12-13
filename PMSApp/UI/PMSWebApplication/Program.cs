@@ -1,7 +1,7 @@
 using Infrastructure.Repositories.Interfaces;
 using Infrastructure.Repositories;
-using Service.Interfaces;
-using Service.Services;
+using Application.Services.Interfaces;
+using Application.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
