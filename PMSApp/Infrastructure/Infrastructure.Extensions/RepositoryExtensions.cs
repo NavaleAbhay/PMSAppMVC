@@ -115,6 +115,7 @@ namespace Infrastructure.Extensions
                 await connection.OpenAsync();
                 using (var command = new MySqlCommand(query, connection))
                 {
+                    System.Console.WriteLine(query);
                     if (parameters != null)
                         AddParameters(command, parameters);
 
@@ -149,8 +150,8 @@ namespace Infrastructure.Extensions
             //System.Console.WriteLine($"Property Names: {string.Join(", ", propertyNames)}");
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                 System.Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
-                System.Console.WriteLine($"Field Name: {reader.GetName(i)}");
+                //  System.Console.WriteLine($"{reader.GetName(i)}: {reader.GetValue(i)}");
+                // System.Console.WriteLine($"Field Name: {reader.GetName(i)}");
                 var propertyName = reader.GetName(i);
                 if (propertyNames.Contains(propertyName,StringComparer.OrdinalIgnoreCase))
                 {
@@ -160,7 +161,7 @@ namespace Infrastructure.Extensions
                     {
                         var value = reader.GetValue(i);
                         property.SetValue(entity, value);
-                       System.Console.WriteLine($"{propertyName}: {value}");
+                    //    System.Console.WriteLine($"{propertyName}: {value}");
                     }
                 }
             }
@@ -185,7 +186,7 @@ namespace Infrastructure.Extensions
                     .Where(p => p.Name != "Id")
                     .Select(p => $"{p.Name} = @{p.Name}")
             );
-            return $"UPDATE {GetTableName<T>()} SET {setClause} WHERE Id = @Id";
+            return $"UPDATE {GetTableName<T>()} SET {setClause} WHERE id = @Id";
         }
 
         private static string GetTableName<T>()

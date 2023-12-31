@@ -17,7 +17,7 @@ namespace Infrastructure.Repositories
         public ProjectRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-            ConnectionString = configuration.GetConnectionString("DefaultConnection");
+            ConnectionString = configuration.GetConnectionString("DefaultConnection")!;
         }
 
         public async Task<IEnumerable<Project>> FindAll()

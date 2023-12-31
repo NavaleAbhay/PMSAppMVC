@@ -1,0 +1,177 @@
+@model Domain.Entities.Project
+
+@{
+ViewBag.Title = "Project Detail";
+}
+
+<h2>Project Detail</h2>
+@if (Model != null && Model.Id != 0)
+{
+@using (@Html.BeginForm("Update","Project",FormMethod.Post,new {id="projectform",@class=" "}))
+{
+<div class="form-horizontal">
+    <div class="form-group" style="display:none;">
+        @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" } )
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.Id)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TeamManagerId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.TeamManagerId, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(model => model.Status, "notstarted", new { id = " " }) Not Started
+            @Html.RadioButtonFor(model => model.Status, "inprogress", new { id = " " }) In Progress
+            @Html.RadioButtonFor(model => model.Status, "completed", new { id = " " }) Completed
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" id="updateButton" value="Update" class="btn btn-primary" />
+        </div>
+
+    </div>
+</div>
+}
+}
+else{
+@using (@Html.BeginForm("Create","Project",FormMethod.Post,new {id="projectform",@class=" "}))
+{
+<div class="form-horizontal">
+    <div class="form-group" style="display:none;">
+        @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" } )
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.Id)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TeamManagerId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.TeamManagerId, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(model => model.Status, "notstarted", new { id = " " }) Not Started
+            @Html.RadioButtonFor(model => model.Status, "inprogress", new { id = " " }) In Progress
+            @Html.RadioButtonFor(model => model.Status, "completed", new { id = " " }) Completed
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" id="saveButton" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+}
+@section scripts {
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $("#projectform").submit(function (e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $("#saveButton").click(function () {
+                submitForm("POST", '@Url.Action("Create", "Project")');
+            });
+
+
+            $("#updateButton").click(function () {
+                submitForm("PUT", '@Url.Action("Update", "Project")');
+            });
+
+            function submitForm(method, url) {
+                $.ajax({
+                    type: method,
+                    url: url,
+                    data: formData,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        console.log(formData);
+                        console.log(data);
+                        console.log("Operation successful");
+                    },
+                    error: function (error) {
+                        console.log(formData);
+                        console.log(data);
+                        console.error("Error performing operation: ", error);
+                    }
+                });
+            };
+        });
+    });
+</script>
+}

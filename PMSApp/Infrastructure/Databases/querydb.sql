@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1678339848098@@127.0.0.1@3306@pms
 select * from activities where  assignedto =15 and projectid=4 and status='todo';
 
 
@@ -52,7 +52,7 @@ INNER JOIN employees e2   on  activities.assignedby=e2.id
 INNER JOIN projects ON activities.projectid =projects.id WHERE activities.id=1;
 
 
-
+SELECT * FROM projects;
 
 -- show all activities for a particular project
 select * from activities where assignedto=11;
@@ -85,3 +85,4 @@ GROUP BY employeeid
 HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
 
 
+SELECT * FROM projects;

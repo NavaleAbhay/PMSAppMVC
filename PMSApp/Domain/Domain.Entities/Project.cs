@@ -25,7 +25,7 @@ namespace Domain.Entities
 
         public override string ToString()
         {
-            return Id + " " + Title + " " + StartDate + " " + TeamManagerId;
+            return Id + " " + Title + " " + StartDate + " " + EndDate + " " + Description + " " + TeamManagerId + " "+ Status;
         }
         public Project()
         {

@@ -1,28 +1,30 @@
 @model List<Domain.Entities.Project>
-
+    <div>
+        <a href="javascript:void(0);" class="btn btn-success" onclick="loadProjectDetail(0)">Create</a>
+    </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Description</th>
                 <th>Team Manager Id</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var project in Model)
             {
-                <tr>
-                    <td>@project.Id</td>
+                <tr data-project-id="@project.Id" ondblclick="javascript:loadProjectDetail(this)">
                     <td>@project.Title</td>
                     <td>@String.Format("{0:dd MMM yyyy}", project.StartDate)</td>
                     <td>@String.Format("{0:dd MMM yyyy}", project.EndDate)</td>                    
                     <td>@project.Description</td>
                     <td>@project.TeamManagerId</td>
                     <td>@project.Status</td>
+                    <td><a data-project-id="@project.Id" onclick="javascript:loadProjectDetail(this)"  style="text-decoration: underline; color: red;">Details</a></td>
                 </tr>
             }
         </tbody>    

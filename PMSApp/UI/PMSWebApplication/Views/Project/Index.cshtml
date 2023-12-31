@@ -1,28 +1,51 @@
 @{
-    ViewData["Title"] = "Index";
+ViewData["Title"] = "Index";
 }
 
 <div id="projectListContainer">
 </div>
 
 @section scripts {
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            loadProjectList();
-        });
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        loadProjectList();
+    });
 
-        function loadProjectList() {
-            $.ajax({
-                url: '@Url.Action("ProjectList", "Project")',
-                type: 'GET',
-                success: function (result) {
-                    $('#projectListContainer').html(result);
-                },
-                error: function (error) {
-                    console.error('Error loading project list: ', error);
-                }
-            });
-        }
-    </script>
+    function loadProjectList() {
+        $.ajax({
+            url: '@Url.Action("ProjectList", "Project")',
+            type: 'GET',
+            success: function (result) {
+                $('#projectListContainer').html(result);
+            },
+            error: function (error) {
+                console.error('Error loading project list: ', error);
+            }
+        });
+    }
+
+    function loadProjectDetail(element) {
+        var projectId = $(element).data('project-id');
+        $.ajax({
+            url: '@Url.Action("ProjectDetail","Project")' + '/' + projectId,
+            type: 'Get',
+            success: function (result) {
+                console.log(result);
+                // $('#projectListContainer').html(result);
+                $("#projectListContainer").empty();
+                $("#projectListContainer").append(result);
+            },
+            error: function (error) {
+                console.error('Error loading project list: ', error);
+            }
+        })
+    }
+
+    function formatDate(dateString) {
+    var date = new Date(dateString);
+    var formattedDate = date.toISOString().split('T')[0];
+    return formattedDate;
+    }
+</script>
 }

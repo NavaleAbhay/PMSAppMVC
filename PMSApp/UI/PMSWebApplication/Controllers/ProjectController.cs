@@ -25,4 +25,26 @@ public class ProjectController : Controller
         IEnumerable<Project> projects = await _projectService.GetAllProjects();
         return PartialView("ProjectList", projects);
     }
+
+    public async Task<ActionResult> ProjectDetail(int id)
+    {
+        Project project=await _projectService.GetProjectById(id);
+        return PartialView("ProjectDetail",project);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Update(Project project)
+    {
+        // System.Console.WriteLine("Project:" + project);
+       await _projectService.Update(project);
+        return RedirectToAction("Index");
+    }
+
+     [HttpPost]
+    public async Task<ActionResult> Create(Project project)
+    {
+        System.Console.WriteLine("Project:" + project);
+       await _projectService.Add(project);
+        return RedirectToAction("Index");
+    }
 }
